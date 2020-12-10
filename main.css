@@ -13,6 +13,7 @@ main {
 
 .gameCell {
 	display: flex;
+	color: white;
 	align-items: center;
 	justify-content: center;
 	-webkit-transition: all 0.3s linear;
