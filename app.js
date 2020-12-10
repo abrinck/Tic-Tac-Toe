@@ -2,7 +2,7 @@ let playerScore = 0;
 let computerScore = 0;
 let isPlayerTurn = true;
 let isGameOver = false;
-let markerCount = 0;
+let turnNumber = 1;
 
 $(document).ready(function () {
 	$('.gameCell').on('click', selectSquare);
@@ -20,14 +20,14 @@ function selectSquare(event) {
 		isPlayerTurn = false;
 		if (this.innerHTML == ''){
 			this.innerHTML = 'X';
-			markerCount++;
+			turnNumber++;
 		} else {
 			return;
 		}
 		if (checkForWin('X')){
 			alert('YOU WON!!!');
 			isGameOver = true;
-		} else if(markerCount >= 9) {
+		} else if(turnNumber > 9) {
 			isGameOver = true;
 			alert('YOU TIED!!')
 		}else {
@@ -38,25 +38,31 @@ function selectSquare(event) {
 }
 
 function computerTurn() {
-	lookForWin();
-	lookForBlock();
-	lookForTrap();
+	if (lookForWin()){} 
+	else if (lookForBlock()) {} 
+	else if (lookForTrap()) {}
+	else {
+		placeRandomMarker()
+	}
 
 
+	if (checkForWin('O')) {
+		alert('YOU LOST!!!');
+		isGameOver = true;
+	} else {
+		isPlayerTurn = true;
+		turnNumber++;
+	}
+}
 
-	while(!isPlayerTurn && !isGameOver){
+function placeRandomMarker() {
+	while (true) {
 		let randomRow = Math.floor(Math.random() * 3) + 1;
 		let randomCol = Math.floor(Math.random() * 3) + 1;
 		let cellId = `#gameGrid${randomRow}-${randomCol}`;
 		if ($(cellId).html() == '') {
 			$(cellId).html('O');
-			markerCount++;
-			if(checkForWin('O')){
-				alert('YOU LOST!!!');
-				isGameOver = true;
-			} else {
-				isPlayerTurn = true;
-			}
+			break;
 		}
 	}
 }
@@ -117,3 +123,27 @@ function checkHorizontalWin(marker) {
 	}
 	return false;
 }
+
+function lookForTrap() {
+	if (turnNumber == 2) {
+		if ($('#gameGrid2-2').html() == 'X') {
+			$('#gameGrid1-1').html('O');
+			return true;
+		} else {
+			$('#gameGrid2-2').html('O');
+			return true;
+		}
+	} else if (turnNumber == 4) {
+		if (
+			($('#gameGrid1-1').html() == 'X' && $('#gameGrid3-3').html() == 'X') ||
+			($('#gameGrid1-3').html() == 'X' && $('#gameGrid3-1').html() == 'X')
+			){
+				$('#gameGrid2-1').html('O')
+				return true;
+			}
+	}
+}
+
+function lookForWin() {}
+
+function lookForBlock() {}
