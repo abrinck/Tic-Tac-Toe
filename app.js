@@ -18,22 +18,33 @@ function resetGame() {
 function selectSquare(event) {
 	if (isPlayerTurn && !isGameOver) {
 		isPlayerTurn = false;
-		if (this.innerHTML == ''){
+		if (this.innerHTML == '') {
 			this.innerHTML = 'X';
 			markerCount++;
 		} else {
 			return;
 		}
-		if (checkForWin('X')){
+		if (checkForWin('X')) {
 			alert('YOU WON!!!');
 			isGameOver = true;
-		} else if(markerCount >= 9) {
+		} else if (markerCount >= 9) {
 			isGameOver = true;
-			alert('YOU TIED!!')
-		}else {
+			alert('YOU TIED!!');
+		} else {
 			computerTurn();
 		}
+	}
+}
 
+function lookForWin() {
+	if (lookHorizontal('X')) {
+		return true;
+	}
+	if (lookVertical('X')) {
+		return true;
+	}
+	if (lookDiagonal('X')) {
+		return true;
 	}
 }
 
@@ -42,16 +53,14 @@ function computerTurn() {
 	lookForBlock();
 	lookForTrap();
 
-
-
-	while(!isPlayerTurn && !isGameOver){
+	while (!isPlayerTurn && !isGameOver) {
 		let randomRow = Math.floor(Math.random() * 3) + 1;
 		let randomCol = Math.floor(Math.random() * 3) + 1;
 		let cellId = `#gameGrid${randomRow}-${randomCol}`;
 		if ($(cellId).html() == '') {
 			$(cellId).html('O');
 			markerCount++;
-			if(checkForWin('O')){
+			if (checkForWin('O')) {
 				alert('YOU LOST!!!');
 				isGameOver = true;
 			} else {
@@ -62,7 +71,7 @@ function computerTurn() {
 }
 
 function checkForWin(marker) {
-	if (checkHorizontalWin(marker) || checkVerticalWin(marker) || checkDiagonalWin(marker)){
+	if (checkHorizontalWin(marker) || checkVerticalWin(marker) || checkDiagonalWin(marker)) {
 		return true;
 	} else {
 		return false;
@@ -71,7 +80,7 @@ function checkForWin(marker) {
 
 function checkVerticalWin(marker) {
 	for (let col = 1; col <= 3; col++) {
-		for (let row = 1; row <= 3; row++){
+		for (let row = 1; row <= 3; row++) {
 			let cellId = `#gameGrid${row}-${col}`;
 			if ($(cellId).html() != marker) {
 				break;
@@ -106,7 +115,7 @@ function checkDiagonalWin(marker) {
 
 function checkHorizontalWin(marker) {
 	for (let row = 1; row <= 3; row++) {
-		for (let col = 1; col <= 3; col++){
+		for (let col = 1; col <= 3; col++) {
 			let cellId = `#gameGrid${row}-${col}`;
 			if ($(cellId).html() != marker) {
 				break;
