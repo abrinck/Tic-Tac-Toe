@@ -11,45 +11,41 @@
 		<main class="container h-100">
 			<section id="gameInfo">
 				<div class="row text-center">
-					<h1 id="gameTitle" class="text-center w-100">Tic Tac Toe</h1>
+					<h1 id="gameTitle" class="text-center w-100 text-primary">Tic Tac Toe</h1>
 				</div>
 				<div class="row">
-					<div class="col-4 text-center">
+					<div class="col-4 text-center text-success">
 						<h2>Player Score</h2>
 						<div id="playerScore" class="display-4">0</div>
 					</div>
-					<div class="col-4 text-center my-4">
-						<label for="playToSelect">Play To:</label>
-						<select name="playToSelect" id="playToSelect">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3" selected>3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
+					<div class="col-4 text-center my-4 align-items-center d-flex justify-content-center">
+						<button id="resetButton" class="btn btn-primary my-auto">Reset Game</button>
 					</div>
-					<div class="col-4 text-center">
+					<div class="col-4 text-center text-danger">
 						<h2>Computer Score</h2>
 						<div id="computerScore" class="display-4">0</div>
 					</div>
+				</div>
+				<div class="row text-center w-100 border-bottom mb-2 border-primary">
+					<h3 class="w-100" id="playerMessage">You go first!</h3>
 				</div>
 			</section>
 			<div class="h-75 w-100 text-center">
 				<div id="gameboard" class="h-100">
 					<div class="row gameboardRow align-items-center">
-						<div id="gameGrid1-1" class="h-100 display-1 border-bottom border-right col-4 gameCell"></div>
-						<div id="gameGrid1-2" class="h-100 display-1 border-bottom col-4 gameCell"></div>
-						<div id="gameGrid1-3" class="h-100 display-1 border-bottom border-left col-4 gameCell"></div>
+						<div id="gameGrid1-1" class="h-100 display-1 border-bottom border-right col-4 gameCell border-primary"></div>
+						<div id="gameGrid1-2" class="h-100 display-1 border-bottom col-4 gameCell border-primary"></div>
+						<div id="gameGrid1-3" class="h-100 display-1 border-bottom border-left col-4 gameCell border-primary"></div>
 					</div>
 					<div class="row gameboardRow">
-						<div id="gameGrid2-1" class="h-100 display-1 border-right col-4 gameCell"></div>
+						<div id="gameGrid2-1" class="h-100 display-1 border-right col-4 gameCell border-primary"></div>
 						<div id="gameGrid2-2" class="h-100 display-1 col-4 gameCell"></div>
-						<div id="gameGrid2-3" class="h-100 display-1 border-left col-4 gameCell"></div>
+						<div id="gameGrid2-3" class="h-100 display-1 border-left col-4 gameCell border-primary"></div>
 					</div>
 					<div class="row gameboardRow">
-						<div id="gameGrid3-1" class="h-100 display-1 border-top border-right col-4 gameCell"></div>
-						<div id="gameGrid3-2" class="h-100 display-1 border-top col-4 gameCell"></div>
-						<div id="gameGrid3-3" class="h-100 display-1 border-top border-left col-4 gameCell"></div>
+						<div id="gameGrid3-1" class="h-100 display-1 border-top border-right col-4 gameCell border-primary"></div>
+						<div id="gameGrid3-2" class="h-100 display-1 border-top col-4 gameCell border-primary"></div>
+						<div id="gameGrid3-3" class="h-100 display-1 border-top border-left col-4 gameCell border-primary"></div>
 					</div>
 				</div>
 			</div>
